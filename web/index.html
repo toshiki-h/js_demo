@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOリスト</title>
+    <style>
+        html {
+            background-color: rgb(240, 240, 240);
+        }
+    </style>
+</head>
+<body>
+    <h1>Demo</h1>
+    <div>
+        <ul id="todo-container"></ul>
+        <button id="hitAPI">hit API</button>
+        <label>
+    </div>
+
+    <script>
+        const hitapibutton = document.querySelector('#hitAPI');
+        // Addボタンをクリックしたときに新しいTODO項目をPOSTする
+        hitapibutton.addEventListener('click', event => {
+            console.log('yebityon')     
+            fetch('./api/v1/bbb')
+            .then(res => res.text()) 
+            .then(xmlBody => {
+                console.log(xmlBody)
+                var new_ele=document.createElement("text");
+                new_ele.innerHTML=xmlBody;
+                document.body.appendChild(new_ele);
+            })
+        });
+    </script>
+</body>
+</html>
