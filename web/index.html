@@ -13,23 +13,41 @@
     <h1>Demo</h1>
     <div>
         <ul id="todo-container"></ul>
-        <button id="hitAPI">hit API</button>
+        <button id="createAPI">Create a room</button>
+        <label>
+    </div>
+
+    <div>
+        <ul id="todo-container"></ul>
+        <button id="joinModeratorAPI">Join as moderator</button>
         <label>
     </div>
 
     <script>
-        const hitapibutton = document.querySelector('#hitAPI');
-        // Addボタンをクリックしたときに新しいTODO項目をPOSTする
-        hitapibutton.addEventListener('click', event => {
-            console.log('yebityon')     
-            fetch('./api/v1/bbb')
-            .then(res => res.text()) 
+        const createapibutton = document.querySelector('#createAPI');
+        const joinModeratorapibutton = document.querySelector('#joinModeratorAPI');
+        // Create a roomボタンをクリックしたときに、createのAPIをGETする
+        createapibutton.addEventListener('click', event => {
+            fetch('./api/v1/create')
+            .then(res => res.text())
             .then(xmlBody => {
                 console.log(xmlBody)
                 var new_ele=document.createElement("text");
                 new_ele.innerHTML=xmlBody;
                 document.body.appendChild(new_ele);
             })
+        });
+        // Join as moderatorボタンをクリックしたときに、Join as moderatorのAPIをGETする
+        joinModeratorapibutton.addEventListener('click', event => {
+          window.open("https://demo-bbb.dtosh-digitalschool.com/bigbluebutton/api/join?fullName=Toshiki+Hirao&meetingID=9239433_001&password=ap&redirect=true&checksum=58b21372f8d75767ebb8a1135c7d70b03b1e372f","_blank")
+            // fetch('./api/v1/join_as_moderator')
+            // .then(res => res.text())
+            // .then(xmlBody => {
+            //     console.log(xmlBody)
+            //     var new_ele=document.createElement("text");
+            //     new_ele.innerHTML=xmlBody;
+            //     document.body.appendChild(new_ele);
+            // })
         });
     </script>
 </body>
